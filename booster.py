@@ -39,7 +39,7 @@ print()
 day = date.today()
 while True:  # search for the latest day with proxies
     day = day - timedelta(days=1)
-    proxy_url = f'https://api.checkerproxy.net/v1/landing/archive/{day.strftime("%Y-%m-%d")}'
+    proxy_url = f'https://github.com/CharlesPikachu/freeproxy/blob/master/proxies.json'
     print(f'getting proxies from {proxy_url} ...')
     response = requests.get(proxy_url)
     if response.status_code == requests.codes.ok:

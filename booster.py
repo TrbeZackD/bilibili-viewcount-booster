@@ -45,13 +45,7 @@ while True:  # search for the latest day with proxies
     if response.status_code == requests.codes.ok:
         # 1.1 extract `total_proxies` from response
         data = response.json()
-        proxies_obj = data['data']['proxyList']
-        if type(proxies_obj) is list:
-            total_proxies = proxies_obj
-        elif type(proxies_obj) is dict:
-            total_proxies = [proxy for proxy in data['data']['proxyList'].values() if proxy]
-        else:
-            raise TypeError(f'Unexpected type of $.data.proxyList: {type(proxies_obj)}')
+        total_proxies = [f"{p['ip']}:{p['port']}" for p in data['data']]
 
         # 1.2 check count of proxies
         if len(total_proxies) > 100:

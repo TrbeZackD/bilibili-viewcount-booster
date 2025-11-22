@@ -39,7 +39,7 @@ print()
 day = date.today()
 while True:  # search for the latest day with proxies
     day = day - timedelta(days=1)
-    proxy_url = f'https://github.com/CharlesPikachu/freeproxy/blob/master/proxies.json'
+    proxy_url = f'https://github.com/TrbeZackD/bilibili-viewcount-booster/blob/main/proxy.json'
     print(f'getting proxies from {proxy_url} ...')
     response = requests.get(proxy_url)
     if response.status_code == requests.codes.ok:

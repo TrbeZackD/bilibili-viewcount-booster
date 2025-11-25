@@ -36,7 +36,7 @@ def pbar(n: int, total: int, hits: Optional[int], view_increase: Optional[int]) 
 
 # 1.get proxy
 print('[*] 使用本地代理文件: /sdcard/Download/data.json')
-with open('/sdcard/Download/proxy.json', 'r', encoding='utf-8') as f:
+with open('/sdcard/Download/data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 total_proxies = [f"{p['ip']}:{p['port']}" for p in data]
 

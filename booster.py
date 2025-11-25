@@ -45,7 +45,7 @@ while True:  # search for the latest day with proxies
     if response.status_code == requests.codes.ok:
         # 1.1 extract `total_proxies` from response
         data = response.json()
-        total_proxies = [f"{p['ip']}:{p['port']}" for p in data['data']]
+        total_proxies = [f"{p['ip']}:{p['port']}" for p in data]
 
         # 1.2 check count of proxies
         if len(total_proxies) > 100:

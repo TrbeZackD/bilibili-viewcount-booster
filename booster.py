@@ -41,13 +41,9 @@ with open('/sdcard/Download/proxy.json', 'r', encoding='utf-8') as f:
 total_proxies = [f"{p['ip']}:{p['port']}" for p in data]
 
         # 1.2 check count of proxies
-        if len(total_proxies) > 100:
-            print(f'successfully get {len(total_proxies)} proxies')
-            break
-        else:
-            print(f'only have {len(total_proxies)} proxies')
-    else:
-        print('no proxy')
+        if len(total_proxies) < 100:
+            raise SystemExit(f'本地代理仅 {len(total_proxies)} 条，不足 100，退出')
+        print(f'[+] 本地可用代理数: {len(total_proxies)}')
 
 # 2.filter proxies by multi-threading
 if len(total_proxies) > 10000:

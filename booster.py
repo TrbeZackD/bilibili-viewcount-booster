@@ -35,17 +35,10 @@ def pbar(n: int, total: int, hits: Optional[int], view_increase: Optional[int]) 
         return f'\r{n}/{total} {progress}{blank} [Hits: {hits}, Views+: {view_increase}]'
 
 # 1.get proxy
-print()
-day = date.today()
-while True:  # search for the latest day with proxies
-    day = day - timedelta(days=1)
-    proxy_url = f'https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/all/data.json'
-    print(f'getting proxies from {proxy_url} ...')
-    response = requests.get(proxy_url)
-    if response.status_code == requests.codes.ok:
-        # 1.1 extract `total_proxies` from response
-        data = response.json()
-        total_proxies = [f"{p['ip']}:{p['port']}" for p in data]
+print('[*] 使用本地代理文件: /sdcard/Download/proxy.json')
+with open('/sdcard/Download/proxy.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+total_proxies = [f"{p['ip']}:{p['port']}" for p in data]
 
         # 1.2 check count of proxies
         if len(total_proxies) > 100:

@@ -36,11 +36,11 @@ def pbar(n: int, total: int, hits: Optional[int], view_increase: Optional[int]) 
         return f'\r{n}/{total} {progress}{blank} [Hits: {hits}, Views+: {view_increase}]'
 
 # 1.get proxy
-print('[*] 使用本地代理文件: /sdcard/Download/data.json+proxies.json')
-with open('/sdcard/Download/data.json', 'r', encoding='utf-8') as f1, \
-     open('/sdcard/Download/proxies.json', 'r', encoding='utf-8') as f2:
+print('[*] 使用本地代理文件: /sdcard/Download/data.json+proxies.txt')
+with open('/sdcard/Download/data.json', 'r', encoding='utf-8') as f1: 
     data1 = json.load(f1)
-    data2 = json.load(f2) 
+with open('/sdcard/Download/proxies.txt', 'r', encoding='utf-8') as f2:
+    data2 = [line.strip() for line in f2 if line.strip()]
 def pick(lst):
     if isinstance(lst, list):                       # 纯列表
         return lst
@@ -49,8 +49,7 @@ def pick(lst):
     if isinstance(lst, dict) and 'proxy' in lst:    # 单条
         return [lst]
     return []                     
-total_proxies = [f"{p['ip']}:{int(p['port'])}" for p in pick(data1)]+ \
-                [f"{p['ip']}:{int(p['port'])}" for p in pick(data2)]
+total_proxies = [f"{p['ip']}:{int(p['port'])}" for p in pick(data1)]+ data2
 
         # 1.2 check count of proxies
 if len(total_proxies) < 100:
